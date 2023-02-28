@@ -17,14 +17,14 @@ public class GameRunner {
         gameLogic = new GameLogic();
         gameLogic.isGameOver = false;
         field = new Field();
-        field.printField(); // выводим в консоль стартовое поле
+        char[][] gameField  = field.getGameField();
+        printField(gameField); // выводим в консоль стартовое поле
         while (!gameLogic.isGameOver) { // пока игра не закончена выполняется цикл
-            System.out.println();
-            gameLogic.addGameObjectX(); // ход игрока Х
-            field.printField();
+            gameLogic.addGameObjectX(gameField); // ход игрока Х
+            printField(gameField);
             if(gameLogic.isGameOver) break; // игрок Х может выиграть раньше, чем закончится цикл, для это делаем проверку
-            gameLogic.addGameObject0();
-            field.printField();
+            gameLogic.addGameObject0(gameField);
+            printField(gameField);
         }
     }
 
@@ -35,7 +35,6 @@ public class GameRunner {
         String s = scanner.nextLine();
         switch (s) {
             case "y":
-                field.fieldReset();
                 isChoiceMade = true;
                 break;
             case "q":
@@ -55,5 +54,17 @@ public class GameRunner {
             System.out.println("Для выхода из игры введите: q ");
             resetOrExit(); // выбираем начать новую или выйти из игры
         }
+    }
+
+    public void printField(char[][] gameField) {
+        System.out.println();
+        for (int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                System.out.print(gameField[i][j] + "  ");
+            }
+            System.out.println();
+            System.out.println();
+        }
+
     }
 }

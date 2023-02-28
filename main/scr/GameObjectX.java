@@ -4,10 +4,10 @@ public class GameObjectX {
     private int x;
     private int y;
 
-    GameObjectX(int x, int y) {
+    GameObjectX(int x, int y, char gameField[][]) {
         this.x = x;
         this.y = y;
-        Field.gameField[x][y] = 'X';
+        gameField[x][y] = 'X';
     }
 
 }
