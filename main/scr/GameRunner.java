@@ -12,7 +12,6 @@ public class GameRunner {
         game.start(field);
     }
 
-
     public void run(Field field) {
         GameLogic gameLogic = new GameLogic();
         char[][] gameField  = field.getGameField();

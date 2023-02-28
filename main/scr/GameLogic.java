@@ -94,6 +94,7 @@ public class GameLogic {
         }
     }
 
+
     private static class GameObjectX {
         GameObjectX(int x, int y, char[][] gameField) {
             gameField[x][y] = 'X';
