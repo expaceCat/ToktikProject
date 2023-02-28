@@ -3,20 +3,18 @@ package main.scr;
 import java.util.Scanner;
 
 public class GameRunner {
-    GameLogic gameLogic;
-    Field field;
+    Scanner scanner;
     boolean exit = false;
 
     public static void main(String[] args) {
         GameRunner game = new GameRunner();
-        game.start();
+        Field field = new Field();
+        game.start(field);
     }
 
 
-    public void run() {
-        gameLogic = new GameLogic();
-        gameLogic.isGameOver = false;
-        field = new Field();
+    public void run(Field field) {
+        GameLogic gameLogic = new GameLogic();
         char[][] gameField  = field.getGameField();
         printField(gameField); // выводим в консоль стартовое поле
         while (!gameLogic.isGameOver) { // пока игра не закончена выполняется цикл
@@ -31,27 +29,22 @@ public class GameRunner {
     public void resetOrExit() { // по окончанию игры, можно выйти или начать новую игру
         boolean isChoiceMade = false;
         while (!isChoiceMade) {
-        Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
-        switch (s) {
-            case "y":
+            if (s.equals("y")) {
                 isChoiceMade = true;
-                break;
-            case "q":
+            } else if (s.equals("q")) {
                 exit = true;
                 isChoiceMade = true;
-                break;
-            default:
+            } else {
                 System.out.print("Сделайте свой выбор: ");
             }
         }
     }
 
-    public void start() {
+    public void start(Field field) {
         while (!exit) {
-            run(); // запускаем игру
-            System.out.println("Чтобы играть еще раз введите: y ");
-            System.out.println("Для выхода из игры введите: q ");
+            run(field); // запускаем игру
+            System.out.println("Чтобы играть еще раз введите: \"y\". Для выхода из игры введите: \"q\"");
             resetOrExit(); // выбираем начать новую или выйти из игры
         }
     }
