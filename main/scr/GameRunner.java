@@ -3,16 +3,16 @@ package main.scr;
 import java.util.Scanner;
 
 public class GameRunner {
-    Scanner scanner;
     boolean exit = false;
+
 
     public static void main(String[] args) {
         GameRunner game = new GameRunner();
-        Field field = new Field();
-        game.start(field);
+        game.start();
     }
 
-    public void run(Field field) {
+    public void run() {
+        Field field = new Field();
         GameLogic gameLogic = new GameLogic();
         char[][] gameField  = field.getGameField();
         printField(gameField); // выводим в консоль стартовое поле
@@ -28,7 +28,8 @@ public class GameRunner {
     public void resetOrExit() { // по окончанию игры, можно выйти или начать новую игру
         boolean isChoiceMade = false;
         while (!isChoiceMade) {
-        String s = scanner.nextLine();
+            Scanner scanner = new Scanner(System.in);
+            String s = scanner.nextLine();
             if (s.equals("y")) {
                 isChoiceMade = true;
             } else if (s.equals("q")) {
@@ -40,9 +41,9 @@ public class GameRunner {
         }
     }
 
-    public void start(Field field) {
+    public void start() {
         while (!exit) {
-            run(field); // запускаем игру
+            run(); // запускаем игру
             System.out.println("Чтобы играть еще раз введите: \"y\". Для выхода из игры введите: \"q\"");
             resetOrExit(); // выбираем начать новую или выйти из игры
         }

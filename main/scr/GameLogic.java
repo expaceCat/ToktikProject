@@ -30,8 +30,9 @@ public class GameLogic {
 
             if(checkWinner(gameField, 'X')) {
                 System.out.println("Победу одержал игрок: Х");
+                isGameOver = true;
             }
-             // проверяем был ли данный ход победным
+            // проверяем был ли данный ход победным
         }
     }
 
@@ -56,13 +57,13 @@ public class GameLogic {
 
             if(checkWinner(gameField, '0')) {
                 System.out.println("Победу одержал игрок: 0");
+                isGameOver = true;
             }
         }
     }
 
     private boolean checkWinner(char[][] gameField, char player) { // проверка на победителя
         //по горизонтали
-        isGameOver = true;
         if (gameField[1][1] == player && gameField[1][2] == player && gameField[1][3] == player) {
             return true;
         }
@@ -89,7 +90,6 @@ public class GameLogic {
         if (gameField[3][1] == player && gameField[2][2] == player && gameField[1][3] == player) {
             return true;
         } else {
-            isGameOver = false;
             return false;
         }
     }
