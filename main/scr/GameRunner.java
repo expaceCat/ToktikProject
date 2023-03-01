@@ -14,13 +14,11 @@ public class GameRunner {
     public void run() {
         Field field = new Field();
         GameLogic gameLogic = new GameLogic();
+        gameLogic.setObjectCount(0);
         char[][] gameField  = field.getGameField();
         printField(gameField); // выводим в консоль стартовое поле
         while (!gameLogic.isGameOver) { // пока игра не закончена выполняется цикл
-            gameLogic.addGameObjectX(gameField); // ход игрока Х
-            printField(gameField);
-            if(gameLogic.isGameOver) break; // игрок Х может выиграть раньше, чем закончится цикл, для это делаем проверку
-            gameLogic.addGameObject0(gameField);
+            gameLogic.addGameObject(gameField); // ход игрока Х
             printField(gameField);
         }
     }
