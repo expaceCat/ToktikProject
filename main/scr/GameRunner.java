@@ -3,7 +3,7 @@ package main.scr;
 import java.util.Scanner;
 
 public class GameRunner {
-    boolean exit = false;
+    private boolean isExit;
 
 
     public static void main(String[] args) {
@@ -11,19 +11,19 @@ public class GameRunner {
         game.start();
     }
 
-    public void run() {
+    private void run() {
         Field field = new Field();
         GameLogic gameLogic = new GameLogic();
         gameLogic.setObjectCount(0);
-        char[][] gameField  = field.getGameField();
-        printField(gameField); // выводим в консоль стартовое поле
-        while (!gameLogic.isGameOver) { // пока игра не закончена выполняется цикл
-            gameLogic.addGameObject(gameField); // ход игрока Х
-            printField(gameField);
+        char[][] gameField = field.getGameFieldModel();
+        field.printField(gameField); // выводим в консоль стартовое поле
+        while (!gameLogic.isGameOver()) { // пока игра не закончена выполняется цикл
+            gameLogic.addGameObject(gameField); // ход игрока
+            field.printField(gameField);
         }
     }
 
-    public void resetOrExit() { // по окончанию игры, можно выйти или начать новую игру
+    private void resetOrExit() { // по окончанию игры, можно выйти или начать новую игру
         boolean isChoiceMade = false;
         while (!isChoiceMade) {
             Scanner scanner = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class GameRunner {
             if (s.equals("y")) {
                 isChoiceMade = true;
             } else if (s.equals("q")) {
-                exit = true;
+                isExit = true;
                 isChoiceMade = true;
             } else {
                 System.out.print("Сделайте свой выбор: ");
@@ -39,23 +39,12 @@ public class GameRunner {
         }
     }
 
-    public void start() {
-        while (!exit) {
+    private void start() {
+        isExit = false;
+        while (!isExit) {
             run(); // запускаем игру
             System.out.println("Чтобы играть еще раз введите: \"y\". Для выхода из игры введите: \"q\"");
             resetOrExit(); // выбираем начать новую или выйти из игры
         }
-    }
-
-    public void printField(char[][] gameField) {
-        System.out.println();
-        for (int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                System.out.print(gameField[i][j] + "  ");
-            }
-            System.out.println();
-            System.out.println();
-        }
-
     }
 }
