@@ -39,6 +39,7 @@ public class GameLogic {
         consoleInput(O_VALUE);
     }
 
+
     private void consoleInput(String value) {
         boolean isCorrectInput = false;
         int inputNumberOfCell;
@@ -71,41 +72,29 @@ public class GameLogic {
 
 
     private String checkWinner() {
-        if (field.getItemValue(0).equals(X_VALUE) && field.getItemValue(1).equals(X_VALUE) && field.getItemValue(2).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(3).equals(X_VALUE) && field.getItemValue(4).equals(X_VALUE) && field.getItemValue(5).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(6).equals(X_VALUE) && field.getItemValue(7).equals(X_VALUE) && field.getItemValue(8).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(0).equals(X_VALUE) && field.getItemValue(3).equals(X_VALUE) && field.getItemValue(6).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(1).equals(X_VALUE) && field.getItemValue(4).equals(X_VALUE) && field.getItemValue(7).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(2).equals(X_VALUE) && field.getItemValue(5).equals(X_VALUE) && field.getItemValue(8).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(0).equals(X_VALUE) && field.getItemValue(4).equals(X_VALUE) && field.getItemValue(8).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(2).equals(X_VALUE) && field.getItemValue(5).equals(X_VALUE) && field.getItemValue(6).equals(X_VALUE))
-            return "X is WINNER";
-        if (field.getItemValue(0).equals(O_VALUE) && field.getItemValue(1).equals(O_VALUE) && field.getItemValue(2).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(3).equals(O_VALUE) && field.getItemValue(4).equals(O_VALUE) && field.getItemValue(5).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(6).equals(O_VALUE) && field.getItemValue(7).equals(O_VALUE) && field.getItemValue(8).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(0).equals(O_VALUE) && field.getItemValue(3).equals(O_VALUE) && field.getItemValue(6).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(1).equals(O_VALUE) && field.getItemValue(4).equals(O_VALUE) && field.getItemValue(7).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(2).equals(O_VALUE) && field.getItemValue(5).equals(O_VALUE) && field.getItemValue(8).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(0).equals(O_VALUE) && field.getItemValue(4).equals(O_VALUE) && field.getItemValue(8).equals(O_VALUE))
-            return "0 is WINNER";
-        if (field.getItemValue(2).equals(O_VALUE) && field.getItemValue(5).equals(O_VALUE) && field.getItemValue(6).equals(O_VALUE))
-            return "0 is WINNER";
+        if (isCheckedWinner(X_VALUE)) return X_VALUE + " is WINNER";
+        if (isCheckedWinner(O_VALUE)) return O_VALUE + " is WINNER";
         if (!checkDraw()) {
             return "Draw.";
         } else return null;
+    }
+
+    private boolean isCheckedWinner(String xValue) {
+        if (field.getItemValue(0).equals(xValue) && field.getItemValue(1).equals(xValue) && field.getItemValue(2).equals(xValue))
+            return true;
+        if (field.getItemValue(3).equals(xValue) && field.getItemValue(4).equals(xValue) && field.getItemValue(5).equals(xValue))
+            return true;
+        if (field.getItemValue(6).equals(xValue) && field.getItemValue(7).equals(xValue) && field.getItemValue(8).equals(xValue))
+            return true;
+        if (field.getItemValue(0).equals(xValue) && field.getItemValue(3).equals(xValue) && field.getItemValue(6).equals(xValue))
+            return true;
+        if (field.getItemValue(1).equals(xValue) && field.getItemValue(4).equals(xValue) && field.getItemValue(7).equals(xValue))
+            return true;
+        if (field.getItemValue(2).equals(xValue) && field.getItemValue(5).equals(xValue) && field.getItemValue(8).equals(xValue))
+            return true;
+        if (field.getItemValue(0).equals(xValue) && field.getItemValue(4).equals(xValue) && field.getItemValue(8).equals(xValue))
+            return true;
+        return field.getItemValue(2).equals(xValue) && field.getItemValue(5).equals(xValue) && field.getItemValue(6).equals(xValue);
     }
 
     private boolean checkDraw() {
